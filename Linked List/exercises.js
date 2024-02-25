@@ -40,6 +40,23 @@ class LinkedList {
   getLength() {
     console.log("Length: " + this.length);
   }
+  makeEmpty() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+  push(value) {
+    const newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this;
+  }
 }
 
 function test() {
@@ -50,6 +67,7 @@ function test() {
   myLinkedList.getLength();
   console.log("\nLinked List:");
   myLinkedList.printList();
+  myLinkedList.püsh(4);
 }
 
 test();
