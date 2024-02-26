@@ -141,7 +141,7 @@ class LinkedList {
     }
     return num;
   }
-  reverseBetween(k, m) {
+  reverseBetween(m, n) {
     if (this.head === null) return;
     const dummy = new Node(0);
     dummy.next = this.head;
