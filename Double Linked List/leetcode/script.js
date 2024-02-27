@@ -61,13 +61,59 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
-  swapFirstLast() {}
-  // WRITE THE SWAPFIRST METHOD HERE //
-  //                                 //
-  //                                 //
-  //                                 //
-  //                                 //
-  /////////////////////////////////////
+  swapFirstLast() {
+    if (!this.head) return undefined;
+    if (this.length === 1) return this;
+
+    let first = this.head;
+    let last = this.tail;
+    this.head = last;
+    this.tail = first;
+
+    this.tail.next = null;
+    this.tail.prev = last.prev;
+
+    this.head.prev = null;
+    this.head.next = first.next;
+
+    return this;
+  }
+  //   swapFirstLast() {
+  //     if (this.length < 2) return;
+  //     const temp = this.head.value;
+  //     this.head.value = this.tail.value;
+  //     this.tail.value = temp;
+  //   }
+  reverse() {
+    if (this.length < 2) return;
+    let current = this.head;
+    let temp = null;
+
+    while (current !== null) {
+      temp = current.prev;
+      current.prev = current.next;
+      current.next = temp;
+      current = current.prev;
+    }
+    temp = this.head;
+    this.head = this.tail;
+    this.tail = temp;
+
+    return this;
+  }
+
+  isPalindrome() {
+    if (this.length <= 1) return;
+    let forwardNode = this.head;
+    let backwardNode = this.tail;
+
+    for (let i = 0; i < this.length / 2; i++) {
+      if (forwardNode.value !== backwardNode.value) return false;
+      forwardNode = forwardNode.next;
+      backwardNode = backwardNode.prev;
+    }
+    return true;
+  }
 }
 
 let myDoublyLinkedList = new DoublyLinkedList(1);
