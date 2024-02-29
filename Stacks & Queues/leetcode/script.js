@@ -94,3 +94,56 @@ function reverseString(string) {
 // }
 
 // console.log(reverseString("hello"));
+
+function sortStack(stack) {
+  const additionalStack = new Stack();
+
+  while (!stack.isEmpty()) {
+    const temp = stack.pop();
+
+    while (!additionalStack.isEmpty() && additionalStack.peek() > temp) {
+      stack.push(additionalStack.pop());
+    }
+
+    additionalStack.push(temp);
+  }
+
+  while (!additionalStack.isEmpty()) {
+    stack.push(additionalStack.pop());
+  }
+}
+
+class MyQueue {
+  constructor() {
+    this.stack1 = new Stack();
+    this.stack2 = new Stack();
+  }
+
+  peek() {
+    return this.stack1.peek();
+  }
+
+  isEmpty() {
+    return this.stack1.isEmpty();
+  }
+
+  enqueue(value) {
+    while (!this.stack1.isEmpty()) {
+      this.stack2.push(this.stack1.pop());
+    }
+
+    this.stack1.push(value);
+
+    while (!this.stack2.isEmpty()) {
+      this.stack1.push(this.stack2.pop());
+    }
+  }
+
+  dequeue() {
+    if (this.isEmpty()) {
+      return null;
+    } else {
+      return this.stack1.pop();
+    }
+  }
+}
