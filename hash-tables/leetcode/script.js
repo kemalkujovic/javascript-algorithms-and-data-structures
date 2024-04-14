@@ -89,6 +89,26 @@ function firstNonRepeatingChar(str) {
 
 // Your function should return an array of arrays, where each inner array contains a group of anagram strings.
 
+function groupAnagrams(arr) {
+  const obj = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    const chars = Array.from(arr[i]);
+    chars.sort();
+    const canoical = chars.join("");
+
+    if (obj[canoical]) {
+      obj[canoical].push(arr[i]);
+    } else {
+      obj[canoical] = [arr[i]];
+    }
+  }
+  console.log(obj);
+  return Object.values(obj);
+}
+
+console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
+
 // Examples:
 
 // groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']) should return [ ['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat'] ].
