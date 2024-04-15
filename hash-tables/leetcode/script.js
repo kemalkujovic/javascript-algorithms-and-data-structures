@@ -208,6 +208,21 @@ console.log(removeDuplicates([1, 1, 2]));
 // Your task is to write a function named hasUniqueChars that takes a string as input.
 // Your function should check if all the characters in the string are unique or not.
 // In other words, no character should appear more than once in the string.
+console.clear();
+function hasUniqueChars(string) {
+  const charSet = new Set();
+
+  for (const ch of string) {
+    if (charSet.has(ch)) {
+      return false;
+    }
+    charSet.add(ch);
+  }
+
+  return true;
+}
+
+console.log(hasUniqueChars("hello"));
 
 // Example
 
@@ -224,3 +239,100 @@ console.log(removeDuplicates([1, 1, 2]));
 // Output: true
 
 // In this example, all the letters are unique, so the function should return true.
+
+// Set: Find Pairs ( ** Interview Question)
+// Your task is to write a function named findPairs that takes in two lists of numbers
+// (arr1 and arr2) and a target number (target).
+
+// The function should find all pairs where one number from arr1 and one number from arr2 sum up to the target number.
+
+// The function should return these pairs as a list.
+
+// Example
+
+function findPairs(arr1, arr2, target) {
+  const mySet = new Set();
+  const pairs = [];
+
+  for (let i = 0; i < arr1.length; i++) {
+    const num = target - arr1[i];
+    if (arr2.includes(num)) {
+      pairs.push([arr[i], num]);
+    }
+  }
+
+  return pairs;
+}
+console.log(findPairs([1, 2, 3], [4, 5, 6], 7));
+// Input: arr1 = [1, 2, 3], arr2 = [4, 5, 6], target = 7
+
+// Output: [[1, 6], [2, 5], [3, 4]]
+
+// In this example, 1 from arr1 and 6 from arr2 add up to 7. Similarly, 2 and 5, and 3 and 4 also add up to 7.
+// // So, the function returns these pairs.
+// Requirements
+
+// The function should take in two lists of numbers (arr1 and arr2) and a target number (target).
+
+// The function should return a list of pairs that sum up to the target.
+
+// Notes
+
+// The numbers in arr1 and arr2 can be in any order.
+
+// If no pairs are found that sum up to the target, return an empty list.
+
+// Each pair should be a list where the first number is from arr1 and the second is from arr2.
+
+// Set: Longest Consecutive Sequence ( ** Interview Question)
+// Your task is to write a function called longestConsecutiveSequence that takes a list of numbers as input.
+
+// Your function should find and return the length of the longest consecutive sequence of numbers in the list.
+
+// Example 1:
+
+// Input: [1, 2, 3, 4, 5]
+
+// Output: 5
+
+// In this example, the numbers 1, 2, 3, 4, and 5 form a consecutive sequence, and the length is 5.
+
+// Example 2:
+
+// Input: [1, 3, 5, 2, 4]
+
+// Output: 5
+
+// Here, even though the numbers are not in order, they still form a consecutive sequence when arranged. So the length is 5.
+
+// Example 3:
+
+// Input: [2, 1, 4, 7, 3]
+
+// Output: 4
+
+// In this example, when arranged in order, the numbers 1, 2, 3, and 4 form a consecutive sequence. So, the length is 4.
+
+// Example 4:
+
+// Input: [9, 1, 3, 10, 2, 20, 21]
+
+// Output: 2
+
+// Here, the longest consecutive sequence is 9 and 10, or 20 and 21, both having a length of 2.
+
+// Example 5:
+
+// Input: [100, 4, 200, 1, 3, 2]
+
+// Output: 4
+
+// In this example, the longest consecutive sequence is 1, 2, 3, and 4. The length is 4.
+
+// Example 6:
+
+// Input: []
+
+// Output: 0
+
+// In this case, the list is empty. Therefore, the length of the longest consecutive sequence is 0.
