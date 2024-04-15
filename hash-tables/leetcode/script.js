@@ -107,10 +107,120 @@ function groupAnagrams(arr) {
   return Object.values(obj);
 }
 
-console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
+// console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
 
 // Examples:
 
 // groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']) should return [ ['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat'] ].
 
 // groupAnagrams(['abc', 'cab', 'bca', 'xyz', 'zyx']) should return [ ['abc', 'cab', 'bca'], ['xyz', 'zyx'] ].
+
+// HT: Two Sum ( ** Interview Question)
+// In this exercise, you are tasked with writing a JavaScript function called twoSum.
+
+// The function should accept an array of integers (nums) and an integer (target).
+// Your task is to find two numbers in the array that sum up to the target integer.
+// The function should return an array containing the indices of these two numbers.
+//  If no such numbers exist, return an empty array.
+
+function twoSum(arr, num) {
+  let obj = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    const complement = num - arr[i];
+
+    if (obj.hasOwnProperty(complement)) {
+      return [obj[complement], i];
+    }
+
+    obj[arr[i]] = i;
+  }
+
+  return [];
+}
+
+console.log(twoSum([2, 7, 11, 15], 9));
+
+// Examples:
+
+// twoSum([2, 7, 11, 15], 9) should return [0, 1] because nums[0] + nums[1] = 2 + 7 = 9.
+
+// twoSum([3, 2, 4], 6) should return [1, 2] because nums[1] + nums[2] = 2 + 4 = 6.
+
+// HT: Subarray Sum ( ** Interview Question)
+// In this exercise, you are tasked with writing a JavaScript function named subarraySum.
+
+// This function should take in an array of integers (nums) and another integer (target).
+
+// Your goal is to find a contiguous subarray whose elements sum up to the given target integer.
+// The function should return an array containing the starting and ending indices of the subarray.
+// If no such subarray exists, return an empty array.
+
+function subarraySum(nums, target) {
+  const sumMap = {};
+  let sum = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    sum += nums[i];
+
+    if (sum === target) {
+      return [0, i];
+    }
+
+    if (sumMap.hasOwnProperty(sum - target)) {
+      console.log(sumMap);
+      return [sumMap[sum - target] + 1, i];
+    }
+    sumMap[sum] = i;
+  }
+
+  return [];
+}
+console.log(subarraySum([1, 4, 20, 3, 10, 5], 33));
+
+// Examples:
+
+// subarraySum([1, 4, 20, 3, 10, 5], 33) should return [2, 4] because the subarray from index 2 to index 4 sums to 33.
+
+// subarraySum([1, 2, 3], 3) should return [0, 1] because the subarray from index 0 to index 1 sums to 3.
+
+// Set: Remove Duplicates
+// Your task is to write a function called removeDuplicates that takes a list of numbers or letters as input.
+
+// This list can have some items that appear more than once.
+
+// Your function should return a new list where each number or letter only appears once.
+
+function removeDuplicates(arr) {
+  return [...new Set(arr)];
+}
+console.log(removeDuplicates([1, 1, 2]));
+// Example
+
+// Input: [1, 2, 2, 3, 4, 4, 4]
+
+// Output: [1, 2, 3, 4]
+
+// In this example, the numbers 2 and 4 appear more than once in the list.
+//  The function removes the extra copies, so each number only appears one time.
+
+// Set: Has Unique Chars ( ** Interview Question)
+// Your task is to write a function named hasUniqueChars that takes a string as input.
+// Your function should check if all the characters in the string are unique or not.
+// In other words, no character should appear more than once in the string.
+
+// Example
+
+// Input: "hello"
+
+// Output: false
+
+// In this example, the letter 'l' appears two times in the word "hello". So, the function should return false.
+
+// Example
+
+// Input: "world"
+
+// Output: true
+
+// In this example, all the letters are unique, so the function should return true.
