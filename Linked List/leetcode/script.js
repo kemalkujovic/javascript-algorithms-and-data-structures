@@ -158,6 +158,86 @@ class LinkedList {
     }
     this.head = dummy.next;
   }
+  bubbleSort() {
+    if (this.length < 2) return;
+
+    let sortedUntil = null;
+    while (sortedUntil !== this.head.next) {
+      let current = this.head;
+      while (current.next !== sortedUntil) {
+        let nextNode = current.next;
+        if (current.value > nextNode.value) {
+          const temp = current.value;
+          current.value = nextNode.value;
+          nextNode.value = temp;
+        }
+        current = current.next;
+      }
+      sortedUntil = current;
+    }
+  }
+
+  selectionSort() {
+    if (this.length < 2) return;
+
+    let current = this.head;
+
+    while (current.next !== null) {
+      let smallest = current;
+      let innerCurrent = current.next;
+
+      while (innerCurrent !== null) {
+        if (innerCurrent.value < smallest.value) {
+          smallest = innerCurrent;
+        }
+
+        innerCurrent = innerCurrent.next;
+      }
+      if (smallest !== current) {
+        const temp = current.value;
+        current.value = smallest.value;
+        smallest.value = temp;
+      }
+    }
+    current = current.next;
+  }
+
+  insertionSort() {
+    if (this.length < 2) {
+      return;
+    }
+
+    let sortedListHead = this.head;
+    let unsortedListHead = this.head.next;
+    sortedListHead.next = null;
+
+    while (unsortedListHead !== null) {
+      let current = unsortedListHead;
+      unsortedListHead = unsortedListHead.next;
+
+      if (current.value < sortedListHead.value) {
+        current.next = sortedListHead;
+        sortedListHead = current;
+      } else {
+        let searchPointer = sortedListHead;
+        while (
+          searchPointer.next !== null &&
+          current.value > searchPointer.next.value
+        ) {
+          searchPointer = searchPointer.next;
+        }
+        current.next = searchPointer.next;
+        searchPointer.next = current;
+      }
+    }
+
+    this.head = sortedListHead;
+    let temp = this.head;
+    while (temp.next !== null) {
+      temp = temp.next;
+    }
+    this.tail = temp;
+  }
 }
 
 let myLinkedList = new LinkedList(1);
