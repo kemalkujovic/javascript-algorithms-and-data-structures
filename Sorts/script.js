@@ -73,3 +73,29 @@ function merge(array1, array2) {
   }
   return combined;
 }
+function quickSort(array, left = 0, right = array.left - 1) {
+  if (left < right) {
+    let pivotIndex = pivot(array, left, right);
+    quickSort(array, left, pivotIndex - 1);
+    quickSort(array, pivotIndex + 1, right);
+  }
+
+  return array;
+}
+function pivot(array, pivotIndex = 0, endIndex = array.length - 1) {
+  let swapIndex = pivotIndex;
+  for (let i = pivotIndex + 1; i < endIndex; i++) {
+    if (array[i] < array[pivotIndex]) {
+      swapIndex++;
+      swap(array, swapIndex, i);
+    }
+  }
+  swap(array, pivotIndex, swapIndex);
+  return swapIndex;
+}
+
+function swap(array, fristIndex, secondIndex) {
+  let temp = array[fristIndex];
+  array[fristIndex] = array[secondIndex];
+  array[secondIndex] = temp;
+}

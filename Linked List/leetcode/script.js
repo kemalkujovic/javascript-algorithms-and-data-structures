@@ -238,6 +238,32 @@ class LinkedList {
     }
     this.tail = temp;
   }
+  merge(otherList) {
+    let otherHead = otherList.head;
+    let dummy = { value: 0, next: null };
+    let current = dummy;
+
+    while (this.head !== null && otherHead !== null) {
+      if (this.head.value < otherHead.value) {
+        current.next = this.head;
+        this.head = this.head.next;
+      } else {
+        current.next = otherHead;
+        otherHead = otherHead.next;
+      }
+      current = current.next;
+    }
+
+    if (this.head !== null) {
+      current.next = this.head;
+    } else {
+      current.next = otherHead;
+      this.tail = otherList.tail;
+    }
+
+    this.head = dummy.next;
+    this.length += otherList.length;
+  }
 }
 
 let myLinkedList = new LinkedList(1);
